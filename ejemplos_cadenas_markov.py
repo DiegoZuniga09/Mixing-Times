@@ -233,17 +233,6 @@ graficar(sim3, "Simulación Urna de Polya", True)
 
 
 
-"""
-Cadena de nacimientos y muertes
-"""
-
-
-#Básicamente puede modelarse con el código de una CM arbitraria
-#pues en cada renglón (i) las probabilidades de ir de i -> i+1, i -> i,
-# i -> i-1, no es la misma para toda i.
-###Si sería necesario meter los valores para ver cómo se comporta 
-# el proceso.
-
 
 
 
