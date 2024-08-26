@@ -31,29 +31,6 @@ def main():
         
          
        
-        # Ésta funciona
-        P = np.array([[0.75, 0.05, 0.2], 
-                      [0.8, 0.1, 0.1],
-                      [0.3, 0.2, 0.5]])
-        
-        P = np.array([[0, 0.3, 0.1, 0.6],
-                     [0.4, 0, 0.6, 0],
-                     [0.2, 0.2, 0, 0.6],
-                     [0.5, 0.1, 0.4, 0]])
-        P =np.array([
-                [0, 0.2, 0.1, 0.2, 0.5],
-                [0.3, 0, 0.2, 0.3, 0.2],
-                [0.4, 0.1, 0, 0.4, 0.1],
-                [0.1, 0.3, 0.3, 0, 0.3],
-                [0.2, 0.4, 0.2, 0.2, 0]
-            ])
-        
-        P = np.array([[0.2,0.1,0.05,0.05,0.3,0.3],
-                      [0.05,0.025,0.05,0.025,0.05,0.8],
-                      [0.25,0, 0.3, 0.25,0, 0.2],
-                      [0.1, 0.3, 0.3,0 , 0.2, 0.1],
-                      [0, 0, 0.33 , 0.33, 0, 0.34],
-                      [0.4, 0.1, 0, 0.4, 0.1, 0]])
         
         print("\nMatriz de Transición:\n"
               f"{P}\n")
@@ -127,10 +104,6 @@ def main():
         ##################################
         ##Caso 1: Irreducible y Aperiódica
         #################################
-        #Establecer un error min para que con base en él redondee los decimales.
-    
-        #mixing_time(P, dist_inv, 0.005)
-        #distancia_max_TV(P, dist_inv, 10)
         
         if FCM.irreducible(clases_com) and FCM.aperiodica(P):
             dist_inv = FCM.dist_invariante(P)
