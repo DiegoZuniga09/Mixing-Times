@@ -1,10 +1,5 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Created on Mon Jul 22 13:11:25 2024
-
-@author: andrea
-"""
 
 import ejemplos_cadenas_markov as ECM
 
