@@ -341,8 +341,9 @@ def galton_watson(generaciones, x0=1, mu=1, seed = 1007):
     np.random.seed(seed)
     for j in range(generaciones):
         individuos = posiciones[-1]        
-        if individuos ==0:
-            posiciones[-1] = 0
+        if individuos == 0:
+            posiciones.append(0)
+            break
         else:
             descendientes = np.random.poisson(lam=mu, size = individuos)
             posiciones.append(np.sum(descendientes))
