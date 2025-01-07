@@ -8,12 +8,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 
-
-
-
-
 def graficar(simulacion, title, Polya = False,Ruina=False,Cupones=False,
-             WF =False, Ehrenfest = False):
+             WF =False, Ehrenfest = False, GW = False):
     """
     Función que graficará la simulación de la cadena de Markov.
 
@@ -41,6 +37,9 @@ def graficar(simulacion, title, Polya = False,Ruina=False,Cupones=False,
         Booleano que servirá para indicar si se trata del ejemplo de 
         las Urnas de Ehrenfest con la finalidad de cambiar el nombre de 
         los ejes. 
+    GW: Boolean
+        Booleano que servirá para indicar si se trata del ejemplo del 
+        Modelo Galton-Watson con la finalidad de cambiar el nombre de los ejes.
     Returns
     -------
     None.
@@ -57,7 +56,7 @@ def graficar(simulacion, title, Polya = False,Ruina=False,Cupones=False,
     plt.figure(figsize=(8, 6))
     plt.scatter(df["tiempo"], df["estados"], color="black")
     plt.plot(df["tiempo"], df["estados"], marker='o', linestyle='-')
-    if WF:
+    if WF or GW:
         plt.xlabel("Generación")
     elif Ruina:
         plt.xlabel("Juego")
@@ -80,6 +79,8 @@ def graficar(simulacion, title, Polya = False,Ruina=False,Cupones=False,
 
     if WF:
         plt.ylabel("Cantidad de Alelos A")
+    elif GW:
+        plt.ylabel("Individuos")
     elif Ruina:
         plt.ylabel("Fortuna")
     elif Cupones:
@@ -310,6 +311,43 @@ def caminata_aleatoria_Z(pasos, x0, seed = 1007, p=0.25, r=0.5, q=0.25):
     return posiciones
 
 
+"""
+Modelo Galton-Watson
+"""
+def galton_watson(generaciones, x0=1, mu=1, seed = 1007):
+    """
+    Función que simula el proceso Galton-Watson. La distribución de la 
+    reproducción de individuos es Poisson(mu).
+
+    Parameters
+    ----------
+    generaciones : int
+        Número de generaciones que se simularán.
+    x0 : int
+        Número de individuos con los que se inician.
+    mu : float
+        Media de la distribución de reproducción de individuos. El valor default
+        es 1.
+    seed : int, optional
+        Semilla para su replicabilidad. El valor default es 1007.
+
+    Returns
+    -------
+    posiciones : list.
+    Lista con los indiviudos en cada tiempo del proceso.
+
+    """
+    posiciones = [x0]
+    np.random.seed(seed)
+    for j in range(generaciones):
+        individuos = posiciones[-1]        
+        if individuos ==0:
+            posiciones[-1] = 0
+        else:
+            descendientes = np.random.poisson(lam=mu, size = individuos)
+            posiciones.append(np.sum(descendientes))
+    return posiciones            
+        
 
 
 """
