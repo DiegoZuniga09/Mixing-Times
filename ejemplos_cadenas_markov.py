@@ -49,7 +49,7 @@ def graficar(simulacion, title, Polya = False,Ruina=False,Cupones=False,
     
     df = pd.DataFrame({
         "estados": simulacion,  
-        "tiempo": range(1, len(simulacion) + 1)
+        "tiempo": range(len(simulacion))
     })
     
     # Graficar
